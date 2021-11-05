@@ -19,7 +19,7 @@ jobs:
           npm run build
 
       - name: Define Short SHA environment variable
-        run: echo "::set-env name=SHORT_SHA::$(echo $GITHUB_SHA | head -c7)"
+        run: echo "SHORT_SHA=$(echo $GITHUB_SHA | head -c7)" >> $GITHUB_ENV
 
       - name: Deploy to Pages
         if: success()
