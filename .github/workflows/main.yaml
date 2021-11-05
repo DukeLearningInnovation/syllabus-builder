@@ -5,7 +5,7 @@ name: CI/CD
 on: push
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,7 +14,9 @@ jobs:
         uses: actions/setup-node@v2.4.1
 
       - name: Build with Snowpack
-        run: npm run build
+        run: |
+          npm install
+          npm run build
 
       - name: Define Short SHA environment variable
         run: echo "::set-env name=SHORT_SHA::$(echo $GITHUB_SHA | head -c7)"
