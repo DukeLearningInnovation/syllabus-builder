@@ -18,10 +18,16 @@ import './scss/app.scss';
 
     // Form Handler
     const form: HTMLFormElement | null = document.querySelector('form');
+    const enableSchedule = document.getElementById('enableSchedule');
+
     if (form) {
       form.onsubmit = async (e) => {
         e.preventDefault();
         const data = new FormData(form);
+        if (!enableSchedule.checked) {
+          // data.set('weekday', null);
+          data.delete('weekday');
+        }
         const blob: Blob = await generateFile(data);
         saveAs(blob, `syllabus${data.get('fileformat') || '.txt'}`);
       };
@@ -44,11 +50,25 @@ import './scss/app.scss';
 
     // Update the viewer on form change
     if (form) {
+      enableSchedule.onchange = async (e) => {
+        (debug && e) ? console.log(`enableSchedule changed: : ${e.target.checked}`) : null;
+        if (e.target.checked) {
+          document.getElementById('schedule')?.classList.remove('d-none');
+        }
+        if (!e.target.checked) {
+          document.getElementById('schedule')?.classList.add('d-none');
+        }
+      };
+
       form.onchange = async (e) => {
         e.preventDefault();
         debug ? console.log(`File format changed: ${e.target.id} : ${e.target.value}`) : null;
 
         const data = new FormData(form);
+        if (!enableSchedule.checked) {
+          // data.set('weekday', null);
+          data.delete('weekday');
+        }
         const response: String = await generatePreview(data);
         const generated: HTMLElement | null = document.getElementById('generated');
         if (generated) {
