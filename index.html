@@ -1,165 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Syllabus Builder : Learning Innovation : Duke University</title>
-    <meta charset="utf-8" />
-  </head>
-  <body class="bg-light">
-    <main id="app" class="py-5 px-3 mx-auto">
-      <nav class="navbar">
-        <a class="navbar-brand" href="https://learninginnovation.duke.edu">
-          <img src="duke_learning_innovation_logo.png" alt="Duke Learning Innovation Logo" width="400"/>
-        </a>
-        <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="#">Syllabus Builder</a>
-          </div>
-        </nav>
-      <form id="builder" class="needs-validation row" novalidate>
-        <div class="col">
-          <h2>Options</h2>
-          <div class="col-md-10 mb-3">
-            <label class="form-label" for="coursename">Course name:</label>
-            <input type="text" class="form-control" name="coursename" id="coursename" placeholder="DEMO 102 - 02">
-          </div>
-          <div class="col-md-6 mb-3">
-            <label class="form-label" for="terms"
-            >Semester to use for syllabus:</label
-            >
-          <select class="form-select" id="terms" name="termNum"></select>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label class="form-label" for="dateformat">Date format:</label>
-          <select class="form-select" id="dateformat" name="dateformat">
-            <option value="eeee, MMMM d, y">Monday, January 25, 2021</option>
-            <option value="eee, MMMM d, y">Mon, January 25, 2021</option>
-            <option value="eee, MMM d, y">Mon, Jan 25, 2021</option>
-            <option value="eee d MMM y">Mon 25 Jan 2021</option>
-            <option value="eeee, MMMM d">Monday, January 25</option>
-            <option value="eee, MMM d">Mon, Jan 25</option>
-            <option value="MMMM d (eeee)">January 25 (Monday)</option>
-            <option value="MMMM d, y">January 25, 2021</option>
-            <option value="d MMMM y">25 January 2021</option>
-            <option value="d MMM y">25 Jan 2021</option>
-            <option value="MMMM d">January 25</option>
-            <option value="MMM d">Jan 25</option>
-            <option value="M/d/y">1/25/2021</option>
-            <option value="y-MM-dd">2021-01-25</option>
-            <option value="MM/dd">01/25</option>
-          </select>
-        </div>
-        <fieldset id="days" class="mb-3">
-          <legend class="fs-6">
-            Select the days of the week when your class will meet:
-          </legend>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label"
-            ><input
-            class="form-check-input"
-            type="checkbox"
-            name="weekday"
-            value="1"
-            id="Monday"
-            />Monday</label
-            >
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label"
-              ><input
-              class="form-check-input"
-                type="checkbox"
-                name="weekday"
-                value="2"
-                id="Tuesday"
-                />Tuesday</label
+    <head>
+        <title>Syllabus Builder : Learning Innovation : Duke University</title>
+        <meta charset="utf-8" />
+    </head>
+    <body class="bg-light">
+        <main id="app" class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a
+                    class="navbar-brand"
+                    href="https://learninginnovation.duke.edu"
                 >
-              </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label"
-              ><input
-              class="form-check-input"
-                type="checkbox"
-                name="weekday"
-                value="3"
-                id="Wednesday"
-              />Wednesday</label
-              >
+                    <img
+                        src="duke_learning_innovation_logo.png"
+                        alt="Duke Learning Innovation Logo"
+                        width="300"
+                    />
+                </a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"
+                            >Syllabus Builder</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="https://learninginnovation.duke.edu/resources/art-and-science-of-teaching/"
+                            >Teaching Guides</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+            <div class="row mb-3">
+                <form id="builder" class="needs-validation col">
+                    <h2 class="">Options</h2>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <label
+                                        class="form-label card-title"
+                                        for="coursename"
+                                        >Course name:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control w-75 card-text"
+                                        name="coursename"
+                                        id="coursename"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="form-check form-switch">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="enableSchedule"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="enableSchedule"
+                                    >Generate meeting schedule</label
+                                >
+                            </div>
+                        </div>
+                        <div class="col">
+                            <fieldset id="schedule" class="card">
+                              <div class="card-body">
+                                <legend class="card-title">Class Meeting Schedule</legend>
+                                <div class="row mb-3">
+                                  <div class="col-4">
+                                    <label class="form-label" for="terms"
+                                    >Semester:</label
+                                    >
+                                    <select
+                                        class="form-select"
+                                        id="terms"
+                                        name="termNum"
+                                        ></select>
+                                      </div>
+                                <div class="col">
+                                    <label class="form-label" for="dateformat"
+                                        >Date format:</label
+                                    >
+                                    <select
+                                        class="form-select"
+                                        id="dateformat"
+                                        name="dateformat"
+                                    >
+                                        <option value="eeee, MMMM d, y">
+                                            Monday, January 25, 1838
+                                        </option>
+                                        <option value="eee, MMMM d, y">
+                                            Mon, January 25, 1838
+                                        </option>
+                                        <option value="eee, MMM d, y">
+                                            Mon, Jan 25, 1838
+                                        </option>
+                                        <option value="eee d MMM y">
+                                            Mon 25 Jan 1838
+                                        </option>
+                                        <option value="eeee, MMMM d">
+                                            Monday, January 25
+                                        </option>
+                                        <option value="eee, MMM d">
+                                            Mon, Jan 25
+                                        </option>
+                                        <option value="MMMM d (eeee)">
+                                            January 25 (Monday)
+                                        </option>
+                                        <option value="MMMM d, y">
+                                            January 25, 1838
+                                        </option>
+                                        <option value="d MMMM y">
+                                            25 January 1838
+                                        </option>
+                                        <option value="d MMM y">
+                                            25 Jan 1838
+                                        </option>
+                                        <option value="MMMM d">
+                                            January 25
+                                        </option>
+                                        <option value="MMM d">Jan 25</option>
+                                        <option value="M/d/y">1/25/1838</option>
+                                        <option value="y-MM-dd">
+                                            1838-01-25
+                                        </option>
+                                        <option value="MM/dd">01/25</option>
+                                    </select>
+                                    </div>
+                                  </div>
+                            <div class="row">
+                            <fieldset id="days" class="col-12">
+                                <legend class="fs-6">
+                                    Select the days of the week when your class
+                                    will meet:
+                                </legend>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label"
+                                        ><input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            name="weekday"
+                                            value="1"
+                                            id="Monday"
+                                        />Monday</label
+                                    >
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label"
+                                        ><input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            name="weekday"
+                                            value="2"
+                                            id="Tuesday"
+                                        />Tuesday</label
+                                    >
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label"
+                                        ><input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            name="weekday"
+                                            value="3"
+                                            id="Wednesday"
+                                        />Wednesday</label
+                                    >
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label"
+                                        ><input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            name="weekday"
+                                            value="4"
+                                            id="Thursday"
+                                        />Thursday</label
+                                    >
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label"
+                                        ><input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            name="weekday"
+                                            value="5"
+                                            id="Friday"
+                                        />Friday</label
+                                    >
+                                </div>
+                            </fieldset>
+                            </div>
+                              </div>
+                            </fieldset>
+                          </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-8">
+                            <select
+                                class="form-select"
+                                id="fileformat"
+                                name="fileformat"
+                                aria-label="Select a file format:"
+                            >
+                                <option selected value="0">
+                                    Select a file format to download
+                                </option>
+                                <option value=".md">Markdown (.md)</option>
+                                <option value=".html">HTML (.html)</option>
+                                <option value=".docx">
+                                    Microsoft Word (.docx)
+                                </option>
+                                <option value=".txt">Plain text (.txt)</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <input
+                                id="download"
+                                class="form-control btn btn-primary"
+                                disabled
+                                type="submit"
+                                value="Download"
+                            />
+                        </div>
+                    </div>
+                </form>
+                <div id="viewer" class="col">
+                    <h2>Preview</h2>
+                    <div id="generated" class="card p-3" aria-hidden="true">
+                        <div class="card-body p-0">
+                            <h2 class="card-title">
+                                <span class="placeholder col-6"></span>
+                            </h2>
+                            <p class="card-subtitle">
+                                <span class="placeholder col-10"></span>
+                            </p>
+                            <h3 class="card-text">
+                                <span class="placeholder col-5"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-5"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-5"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-4"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-5"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-6"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-6"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-5"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-5"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-4"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-5"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-4"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-4"></span>
+                            </h3>
+                            <h3 class="card-text">
+                                <span class="placeholder col-5"></span>
+                            </h3>
+                        </div>
+                    </div>
+                    <!--end #generated-->
+                </div>
+                <!--end #viewer-->
             </div>
-            <div class="form-check form-check-inline">
-            <label class="form-check-label"
-            ><input
-            class="form-check-input"
-            type="checkbox"
-            name="weekday"
-            value="4"
-            id="Thursday"
-            />Thursday</label
-            >
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label"
-            ><input
-            class="form-check-input"
-            type="checkbox"
-            name="weekday"
-            value="5"
-            id="Friday"
-            />Friday</label
-            >
-          </div>
-        </fieldset>
-
-        <select
-          class="form-select mb-3 w-50"
-          id="fileformat"
-          name="fileformat"
-          aria-label="Select a file format:"
-        >
-        <option selected value="0">Select a file format to download</option>
-          <option value=".md">Markdown (.md)</option>
-          <option value=".html">HTML (.html)</option>
-          <option value=".docx">Microsoft Word (.docx)</option>
-          <option value=".txt">Plain text (.txt)</option>
-        </select>
-        <input id="download" class="w-25 form-control btn btn-primary" disabled type="submit" value="Download" />
-      </div>
-        <div id="viewer" class="col">
-          <h2>Preview</h2>
-          <div id="generated" class="card p-3" aria-hidden="true">
-            <div class="card-body p-0">
-              <h2 class="placeholder-glow card-title">
-                <span class="placeholder col-11"></span>
-              </h2>
-              
-              <p class="card-text placeholder-glow">
-                <span class="placeholder col-7"></span>
-                <span class="placeholder col-4"></span>
-              <span class="placeholder col-4"></span>
-              <span class="placeholder col-6"></span>
-              <span class="placeholder col-8"></span>
-            </p>
-            <p class="card-text placeholder-glow">
-              <span class="placeholder col-7"></span>
-              <span class="placeholder col-4"></span>
-              <span class="placeholder col-4"></span>
-              <span class="placeholder col-6"></span>
-              <span class="placeholder col-8"></span>
-            </p>
-            <p class="card-text placeholder-glow">
-              <span class="placeholder col-7"></span>
-              <span class="placeholder col-4"></span>
-              <span class="placeholder col-4"></span>
-              <span class="placeholder col-6"></span>
-              <span class="placeholder col-8"></span>
-            </p>
-            
-          </div>
-        </div><!--end #generated-->
-        
-      </div><!--end #viewer-->
-    </form>
-    </main>
-    <script src="/src/main.ts" type="module"></script>
-    <!-- <script src="/src/templates/html.njk"></script> -->
-    <!-- <script src="/src/templates/markdown.njk"></script> -->
-  </body>
+        </main>
+        <script src="/src/main.ts" type="module"></script>
+    </body>
 </html>
